@@ -4,6 +4,10 @@
 @import "_video.scss";
 @import "_audio.scss";
 
+.hidden {
+    display: none;
+}
+
 .flexCenter{
     display: flex;
     flex-direction: column;

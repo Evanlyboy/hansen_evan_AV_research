@@ -7,13 +7,13 @@ router.get('/', function(req, res, next) {
 });
 
 /* get the audio component */
-router.get('/audio', function (req, res, next) {
-  res.render('audio', { title: 'Audio' });
+router.get('/english', function (req, res, next) {
+  res.render('english', { title: 'English' });
 });
 
 /* get the video component */
-router.get('/video', function (req, res, next) {
-  res.render('video', { title: 'Video' });
+router.get('/japanese', function (req, res, next) {
+  res.render('japanese', { title: 'Japanese' });
 });
 
 module.exports = router;
