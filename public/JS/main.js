@@ -2,6 +2,8 @@ let isDyslexic = true;
 let isDark = true;
 
 const body = document.getElementsByTagName('body')[0];
+const video = document.getElementById("video");
+const seekBar = document.getElementById('video-seek-bar');
 
 function toggleFont() {
   if (isDyslexic) {
@@ -22,6 +24,30 @@ function toggleDarkMode() {
     }
     isDark = !isDark;
   }
+
+// Play & Pause for video
+video.addEventListener("click", function() {
+  if (video.paused) {
+    video.play();
+  } else {
+    video.pause();
+  }
+});
+
+// Seek bar for video
+// Update the seek bar as the video plays
+video.addEventListener('timeupdate', function() {
+  const percentage = (video.currentTime / video.duration) * 100;
+  seekBar.value = percentage;
+});
+
+// Seek the video when the user drags the seek bar
+seekBar.addEventListener('input', function() {
+  const time = video.duration * (seekBar.value / 100);
+  video.currentTime = time;
+});
+
+
 
 
 
