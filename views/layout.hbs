@@ -13,25 +13,28 @@
 
     <title>Evan Hansen A/V Research</title>
     <title>{{title}}</title>
-
-    {{!-- <script src="https://unpkg.com/vue@next"></script>    
-    <script src="/JS/main.js"></script> --}}
   </head>
 
-  <body id="app" :class="{ openDyslexic : dyslexicToggle}">
+  <body id="app">
 
     <header class="flexCenter">
     <h1 class="">Evan's A/V Accessability App</h1>
-    <button @click="dyslexic = !dyslexic">Dyslexic Mode</button>
+    <div>
+      <button class="openDyslexic" onclick="toggleFont()">Dyslexic Mode</button>
+      <button onclick="toggleDarkMode()">Dark Mode</button>
+    </div>
 
   </header>
     <section class="nav flexCenter">
         <h2 class="">Choose a button!</h2>
         <div>
-            <a href="/audio">Audio</a>
-            <a href="/video">Video</a>
+          <button><a href="/audio">Audio</a></button>
+          <button><a href="/video">Video</a></button>
+            
         </div>
     </section>
     {{{body}}}
+
+    <script src="/JS/main.js"></script>
   </body>
 </html>
