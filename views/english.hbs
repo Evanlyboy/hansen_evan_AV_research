@@ -24,16 +24,17 @@
                 {{!-- Yes, this is the video tag --}}
                 <video
                     id="video"
-                    class="video-player video-js"
+                    class="video-player vjs-big-play-centered video-js"
                     controls
                     preload="auto"
                     width="890"
                     height="480"
                     poster="/images/thumbnail.jpg"
-                    data-setup="{}"
+                    data-setup='{}'
                 >
                     <source src="assets/silentVoice.mp4" type="video/mp4" />
                     <track default kind="captions" srclang="en" label="English" src="assets/silentVoiceEnglish.vtt"/>
+                    <track kind="captions" srclang="jp" label="Japanese" src="assets/silentVoiceJapanese.vtt"/>
                     <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a
                     web browser that
@@ -42,17 +43,16 @@
                     >
                     </p>
                 </video>
-
-                {{!-- <video id="video" class="video-player" nocontrols crossorigin>
-                    <source src="assets/silentVoice.mp4" type="video/webm">
-                    <track default kind="captions" srclang="en" label="English" src="assets/silentVoiceEnglish.vtt"/>
-                </video> --}}
-                <input type="range" min="0" max="255" step="1" value="0" id="video-seek-bar">
             </div>
 
             <div>
-                <button class="captions" data-button="0" aria-label="Toggle English Video Captions">English Subtitles<i class="icon ion-ios-closed-captioning"></i></button>
-                <button class="captions" data-button="0" aria-label="Toggle Japanese Video Captions">Japanese Subtitles<i class="icon ion-ios-closed-captioning"></i></button>
+                <button class="captions" data-button="0" aria-label="Toggle English Video Captions">English Subtitles</button>
+                <button class="captions" data-button="1" aria-label="Toggle Japanese Video Captions">Japanese Subtitles</button>
+            </div>
+
+            <div>
+                <button id="englishAudioButton" class="audio" aria-label="Toggle English Audio Track">English Audio</button>
+                <button id="japaneseAudioButton" class="audio" aria-label="Toggle Japanese Audio Track">Japanese Audio</button>
             </div>
 
             <div>{{captionText}}</div>
@@ -70,9 +70,9 @@
 
             <div class="flexCenter">
             <!-- linking audio file -->
-                <div>
-                    <audio id="audio" src="assets/silentVoiceEnglish.mp3" controls></audio>
-                    <audio id="audio" src="assets/silentVoiceJapanese.mp3" controls></audio>
+                <div class="hidden">
+                    <audio id="englishAudio" src="assets/silentVoiceEnglish.mp3" type="audio/mp3" controls></audio>
+                    <audio id="japaneseAudio" src="assets/silentVoiceJapanese.mp3" type="audio/mp3" controls></audio>
                 </div>
                     <button class="transcript-btn">Show Transcript</button>
             </div>
