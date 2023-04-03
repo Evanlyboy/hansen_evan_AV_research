@@ -81,6 +81,7 @@
   "author": "Evan Hansen",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "video.js": "^8.0.4"
   }
 }
