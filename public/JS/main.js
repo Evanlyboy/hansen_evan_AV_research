@@ -6,9 +6,15 @@
     const englishAudioButton = document.getElementById('englishAudioButton');
     const japaneseAudioButton = document.getElementById('japaneseAudioButton');
 
+    const playButton = document.getElementById('play');
+    const pauseButton = document.getElementById('pause');
+    const muteButton = document.getElementById('mute');
+    const fullscreenButton = document.getElementById('fullscreen');
+
     const englishAudio = document.getElementById('englishAudio');
     const japaneseAudio = document.getElementById('japaneseAudio');
-    const currentAudio = null;
+    var currentAudio = null;
+    var currentCaption = null;
 
     const englishCaptionButton = document.getElementById('englishCaptionButton');
     const japaneseCaptionButton = document.getElementById('japaneseCaptionButton');
@@ -52,16 +58,58 @@
         
     }
 
+    playButton.addEventListener('click', () => {
+      // This is not a great naming scheme
+      video.play();
+      videoPlay();
+
+      playButton.classList.add('toggleButton');
+      pauseButton.classList.remove('toggleButton');
+    });
+
+    pauseButton.addEventListener('click', () => {
+      // This is not a great naming scheme
+      video.pause();
+      videoPause();
+
+      pauseButton.classList.add('toggleButton');
+      playButton.classList.remove('toggleButton');
+    });
+
+    muteButton.addEventListener('click', () => {
+      // This is not a great naming scheme
+
+      if(englishAudio.muted && japaneseAudio.muted === true) {
+        englishAudio.muted = false;
+        japaneseAudio.muted = false;
+        muteButton.classList.remove('toggleButton');
+      } else {
+        englishAudio.muted = true;
+        japaneseAudio.muted = true;
+        muteButton.classList.add('toggleButton');
+      }
+    });
+
+    fullscreenButton.addEventListener('click', () => {
+      // This is not a great naming scheme
+      video.requestFullscreen();
+    });
     
+
 
     // Add a click event listener to the button
     englishAudioButton.addEventListener('click', () => {
 
-      currentAudio === englishAudio;
+      englishAudioButton.classList.add('toggleButton');
+      japaneseAudioButton.classList.remove('toggleButton');
+
+      currentAudio = englishAudio;
 
       japaneseAudio.pause();
       englishAudio.play();
       englishAudio.currentTime = video.currentTime();
+
+      console.log(video.currentTime());
 
 
 
@@ -91,7 +139,10 @@
     // Add a click event listener to the button
     japaneseAudioButton.addEventListener('click', () => {
 
-      currentAudio === japaneseAudio;
+      englishAudioButton.classList.remove('toggleButton');
+      japaneseAudioButton.classList.add('toggleButton');
+
+      currentAudio = japaneseAudio;
 
       englishAudio.pause();
       japaneseAudio.play();
@@ -127,6 +178,7 @@
         // Find the English captions track and mark it as "showing".
         if (track.language === 'en') {
           track.mode = 'showing';
+          englishCaptionButton.classList.add('toggleButton');
         }
       }
 
@@ -135,6 +187,7 @@
       
         if (track.language === 'jp') {
           track.mode = 'disabled';
+          japaneseCaptionButton.classList.remove('toggleButton');
         }
       }
 
@@ -155,6 +208,7 @@
       
         if (track.language === 'jp') {
           track.mode = 'showing';
+          japaneseCaptionButton.classList.add('toggleButton');
         }
       }
 
@@ -163,6 +217,7 @@
       
         if (track.language === 'en') {
           track.mode = 'disabled';
+          englishCaptionButton.classList.remove('toggleButton');
         }
       }
 

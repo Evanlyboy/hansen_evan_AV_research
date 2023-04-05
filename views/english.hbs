@@ -32,7 +32,7 @@
                     poster="/images/thumbnail.jpg"
                     data-setup='{}'
                 >
-                    <source src="assets/silentVoice.mp4" type="video/mp4" />
+                    <source src="https://avresearch.evanly.ca/aSilentVoice.webm" type="video/mp4" />
                     <track default kind="captions" srclang="en" label="English" src="assets/silentVoiceEnglish.vtt"/>
                     <track kind="captions" srclang="jp" label="Japanese" src="assets/silentVoiceJapanese.vtt"/>
 
@@ -46,6 +46,13 @@
                 </video>
             </div>
 
+            <div class="buttonFlex">
+                <button id="play" aria-label="Button to play the video"><i class="fa-solid fa-play"></i></button>
+                <button id="pause" aria-label="Button to pause the video"><i class="fa-solid fa-pause"></i></button>
+                <button id="mute" aria-label="Button to mute the video"><i class="fa-solid fa-volume-xmark"></i></button>
+                <button id="fullscreen" aria-label="Button to toggle fullscreen"><i class="fa-solid fa-expand"></i></button>
+            </div>
+
             <div>
                 <button id="englishCaptionButton" class="captions" data-button="0" aria-label="Toggle English Video Captions">English Subtitles</button>
                 <button id="japaneseCaptionButton" class="captions" data-button="1" aria-label="Toggle Japanese Video Captions">Japanese Subtitles</button>
@@ -55,8 +62,6 @@
                 <button id="englishAudioButton" class="audio" aria-label="Toggle English Audio Track">English Audio</button>
                 <button id="japaneseAudioButton" class="audio" aria-label="Toggle Japanese Audio Track">Japanese Audio</button>
             </div>
-
-            <div>{{captionText}}</div>
         </div>
 
     </section>
@@ -68,28 +73,11 @@
                 <h2 class="hidden">The Audio Component</h2>
         </div>
         <div class="videoBox">
-
-            <div class="flexCenter">
             <!-- linking audio file -->
                 <div class="hidden">
-                    <audio id="englishAudio" src="assets/silentVoiceEnglish.mp3" type="audio/mp3" controls></audio>
-                    <audio id="japaneseAudio" src="assets/silentVoiceJapanese.mp3" type="audio/mp3" controls></audio>
+                    <audio id="englishAudio" src="https://avresearch.evanly.ca/silentVoiceEnglish.mp3" type="audio/mp3" controls></audio>
+                    <audio id="japaneseAudio" src="https://avresearch.evanly.ca/silentVoiceJapanese.mp3" type="audio/mp3" controls></audio>
                 </div>
-                    <button class="transcript-btn">Show Transcript</button>
-            </div>
-        </div>
-
-        <div class="">
-            <p class=""><p>
-        </div>
-
-        <div class="transcript hidden">
-            <h3 class="hidden">Transcript</h3>
-            <blockquote class="blockquote text-center">
-                <p class="">
-                    
-                </p>
-            </blockquote>
         </div>
     </section>
 </body>

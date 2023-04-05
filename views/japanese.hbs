@@ -1,0 +1,84 @@
+<body>
+
+    <header class="flexCenter">
+        <h1 class="">エバンの回遊性アプリ</h1>
+        <div>
+        {{!-- <button class="openDyslexic" onclick="toggleFont()">Dyslexic Mode</button> --}}
+        <button onclick="toggleDarkMode()">夜のモッド</button>
+        </div>
+
+    </header>
+
+
+    {{!-- Video Component --}}
+    <section class="flexCenter">
+
+        <div class="videoComponent flexCenter">
+            <h2 class="centerText">ようこそにエバンの回遊性アプリ! 映画をたのしめ、と英語それとも日本語の音響字幕で決めます。</h2>
+        </div>
+
+        <div class="videoBox flexCenter">
+
+            <div class="video-wrapper">
+
+                {{!-- Yes, this is the video tag --}}
+                <video
+                    id="video"
+                    class="video-player vjs-big-play-centered video-js"
+                    controls
+                    preload="auto"
+                    width="890"
+                    height="480"
+                    poster="/images/thumbnail.jpg"
+                    data-setup='{}'
+                >
+                    <source src="https://avresearch.evanly.ca/aSilentVoice.webm" type="video/mp4" />
+                    <track default kind="captions" srclang="en" label="English" src="assets/silentVoiceEnglish.vtt"/>
+                    <track kind="captions" srclang="jp" label="Japanese" src="assets/silentVoiceJapanese.vtt"/>
+
+                    <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank"
+                        >supports HTML5 video</a
+                    >
+                    </p>
+                </video>
+            </div>
+
+            <div class="buttonFlex">
+                <button id="play" aria-label="Button to play the video"><i class="fa-solid fa-play"></i></button>
+                <button id="pause" aria-label="Button to pause the video"><i class="fa-solid fa-pause"></i></button>
+                <button id="mute" aria-label="Button to mute the video"><i class="fa-solid fa-volume-xmark"></i></button>
+                <button id="fullscreen" aria-label="Button to toggle fullscreen"><i class="fa-solid fa-expand"></i></button>
+            </div>
+
+            <div>
+                <button id="englishCaptionButton" class="captions" data-button="0" aria-label="Toggle English Video Captions">英語の字幕</button>
+                <button id="japaneseCaptionButton" class="captions" data-button="1" aria-label="Toggle Japanese Video Captions">日本語の字幕</button>
+            </div>
+
+            <div>
+                <button id="englishAudioButton" class="audio" aria-label="Toggle English Audio Track">英語の音響</button>
+                <button id="japaneseAudioButton" class="audio" aria-label="Toggle Japanese Audio Track">日本語の音響</button>
+            </div>
+        </div>
+
+    </section>
+
+    {{!-- Audio Component --}}
+    <section class="flexCenter">
+        <!-- audio component -->
+        <div class="audioComponent">
+                <h2 class="hidden">The Audio Component</h2>
+        </div>
+        <div class="videoBox">
+            <!-- linking audio file -->
+                <div class="hidden">
+                    <audio id="englishAudio" src="https://avresearch.evanly.ca/silentVoiceEnglish.mp3" type="audio/mp3" controls></audio>
+                    <audio id="japaneseAudio" src="https://avresearch.evanly.ca/silentVoiceJapanese.mp3" type="audio/mp3" controls></audio>
+                </div>
+        </div>
+    </section>
+</body>
+</html>
