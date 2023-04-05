@@ -1,10 +1,10 @@
 <body>
 
     <header class="flexCenter">
-        <h1 class="">Evan's A/V Accessability App</h1>
+        <h1 class="">エバンの回遊性アップ</h1>
         <div>
-        <button class="openDyslexic" onclick="toggleFont()">Dyslexic Mode</button>
-        <button onclick="toggleDarkMode()">Dark Mode</button>
+        {{!-- <button class="openDyslexic" onclick="toggleFont()">Dyslexic Mode</button> --}}
+        <button onclick="toggleDarkMode()">夜のモッド</button>
         </div>
 
     </header>
@@ -14,7 +14,7 @@
     <section class="flexCenter">
 
         <div class="videoComponent flexCenter">
-            <h2 class="centerText">Welcome to my accessible video player! Please enjoy the video below and choose from English or Japanese Audio, as well as English or Japanese subtitles.</h2>
+            <h2 class="centerText">ようこそにエバンの回遊性アップ! 映画をたのしめ、と英語それとも日本語の音響字幕で決めます。</h2>
         </div>
 
         <div class="videoBox flexCenter">
@@ -54,16 +54,16 @@
             </div>
 
             <div>
-                <button id="englishCaptionButton" class="captions" data-button="0" aria-label="Toggle English Video Captions">English Subtitles</button>
-                <button id="japaneseCaptionButton" class="captions" data-button="1" aria-label="Toggle Japanese Video Captions">Japanese Subtitles</button>
+                <button id="englishCaptionButton" class="captions" data-button="0" aria-label="Toggle English Video Captions">英語の字幕</button>
+                <button id="japaneseCaptionButton" class="captions" data-button="1" aria-label="Toggle Japanese Video Captions">日本語の字幕</button>
             </div>
 
             <div>
-                <button id="englishAudioButton" class="audio" aria-label="Toggle English Audio Track">English Audio</button>
-                <button id="japaneseAudioButton" class="audio" aria-label="Toggle Japanese Audio Track">Japanese Audio</button>
+                <button id="englishAudioButton" class="audio" aria-label="Toggle English Audio Track">英語の音響</button>
+                <button id="japaneseAudioButton" class="audio" aria-label="Toggle Japanese Audio Track">日本語の音響</button>
             </div>
 
-            <div>Choose a button!</div>
+            <div>バットマンを決めてります</div>
         </div>
 
     </section>
