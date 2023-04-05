@@ -5,42 +5,18 @@
     // const japaneseAudio = document.getElementById('japaneseAudio');
     const englishAudioButton = document.getElementById('englishAudioButton');
     const japaneseAudioButton = document.getElementById('japaneseAudioButton');
+
+    const englishAudio = document.getElementById('englishAudio');
+    const japaneseAudio = document.getElementById('japaneseAudio');
+    const currentAudio = null;
+
+    const englishCaptionButton = document.getElementById('englishCaptionButton');
+    const japaneseCaptionButton = document.getElementById('japaneseCaptionButton');
     // let currentAudioTrack = null;
 
-    const englishCaptions = video.addRemoteTextTrack({
-        kind: 'captions',
-        label: 'English',
-        srclang: 'en',
-        default: true,
-        src: 'assets/silentVoiceEnglish.vtt'
-      });
 
-    const japaneseCaptions = video.addRemoteTextTrack({
-        kind: 'captions',
-        label: 'Japanese',
-        srclang: 'jp',
-        default: false,
-        src: 'assets/silentVoiceJapanese.vtt'
-      });
 
-      const englishAudio = {
-        id: 'englishAudio',
-        kind: 'audio',
-        label: 'English',
-        language: 'en',
-        src: 'assets/silentVoiceEnglish.mp3'
-      };
-
-      const japaneseAudio = {
-        id: 'japaneseAudio',
-        kind: 'audio',
-        label: 'Japanese',
-        language: 'jp',
-        src: 'assets/silentVoiceJapanese.mp3'
-      };
-
-      video.audioTracks().addTrack(englishAudio);
-      video.audioTracks().addTrack(japaneseAudio);
+    var tracks = video.textTracks();
 
       video.on('pause', () => {
         // Pause the audio tracks as well
@@ -52,20 +28,56 @@
         videoPlay();
       });
 
+      // video.on('timeupdate', () => {
+      //   const currentTime = video.currentTime();
+      //   englishAudio.currentTime = currentTime;
+      //   japaneseAudio.currentTime = currentTime;
+      //   console.log(currentTime);
+      // });
+
     function videoPause(){
-        const currentAudioTrack = video.audioTracks().currentTrack();
-        currentAudioTrack && currentAudioTrack.enabled && currentAudioTrack.pause();
+      japaneseAudio.pause();
+      englishAudio.pause();
+        // const currentAudioTrack = video.audioTracks().currentTrack;
+        // currentAudioTrack && currentAudioTrack.enabled && currentAudioTrack.pause;
     }
 
     function videoPlay(){
-        const currentAudioTrack = video.audioTracks().currentTrack();
-        currentAudioTrack && currentAudioTrack.enabled && currentAudioTrack.play();
+
+      if(currentAudio === null) {
+        englishAudio.play();
+      } else {
+        currentAudio.play();
+      }
+        
     }
+
+    
 
     // Add a click event listener to the button
     englishAudioButton.addEventListener('click', () => {
 
-        video.audioTracks().setTrack(englishAudio);
+      currentAudio === englishAudio;
+
+      japaneseAudio.pause();
+      englishAudio.play();
+      englishAudio.currentTime = video.currentTime();
+
+
+
+      // -------------------------------------------------------------
+      // console.log(video.audioTracks());
+
+      // video.currentAudioTrack = 0;
+
+      // console.log(video.currentAudioTrack);
+
+      // video.audioTracks_.tracks_[0].enabled == true;
+      // video.audioTracks_.tracks_[1].enabled == false;
+
+      // debugger;
+
+        // video.audioTracks().setTrack(englishAudio);
 
     // videoPause();
     // currentAudioTrack = englishAudio;
@@ -73,20 +85,93 @@
     // videoPlay();
 
     // console.log(currentAudioTrack);
+    // -------------------------------------------------------------
     });
 
     // Add a click event listener to the button
     japaneseAudioButton.addEventListener('click', () => {
+
+      currentAudio === japaneseAudio;
+
+      englishAudio.pause();
+      japaneseAudio.play();
+      japaneseAudio.currentTime = video.currentTime();
+
+
+      // -------------------------------------------------------------
+      // video.audioTracks_.tracks_[0].enabled == false;
+      // video.audioTracks_.tracks_[1].enabled == true;
+
+      // video.currentAudioTrack = 1;
         
-        video.audioTracks().setTrack(japaneseAudio);
+        // video.audioTracks().setTrack(japaneseAudio);
         // videoPause();
         // currentAudioTrack = japaneseAudio;
         // currentAudioTrack.currentTime = video.currentTime();
         // videoPlay();
         // console.log(currentAudioTrack);
+      // -------------------------------------------------------------
     });
 
+    // My attempts at getting captions to switch to work
 
+    // Man, this is a massive pain in the ass
+
+    englishCaptionButton.addEventListener('click', () => {
+
+
+      // Got this directly from the documentation so it better goddamn work
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+      
+        // Find the English captions track and mark it as "showing".
+        if (track.language === 'en') {
+          track.mode = 'showing';
+        }
+      }
+
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+      
+        if (track.language === 'jp') {
+          track.mode = 'disabled';
+        }
+      }
+
+
+      // -------------------------------------------------------------
+      // debugger;
+
+      // japaneseCaptions.mode = 'disabled';
+
+      // englishCaptions.mode = 'showing';
+      // -------------------------------------------------------------
+    })
+
+    japaneseCaptionButton.addEventListener('click', () => {
+
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+      
+        if (track.language === 'jp') {
+          track.mode = 'showing';
+        }
+      }
+
+      for (var i = 0; i < tracks.length; i++) {
+        var track = tracks[i];
+      
+        if (track.language === 'en') {
+          track.mode = 'disabled';
+        }
+      }
+
+      // -------------------------------------------------------------
+      // englishCaptions.mode = 'disabled';
+
+      // japaneseCaptions.mode = 'showing';
+      // -------------------------------------------------------------
+    })
 
     // Set up toggle functions for font and dark mode
     var isDyslexic = false;
@@ -112,14 +197,51 @@
     isDark = !isDark;
     }
 
+// Javascript Graveyard
+// Here lies evan's hopes and dreams
 
+// I don't think this works. I have tried everything to make it so. Video.js just doesn't work with audio tracks ig
 
-// 
+    // -------------------------------------------------------------
+    // const englishCaptions = video.addRemoteTextTrack({
+    //     kind: 'captions',
+    //     label: 'English',
+    //     srclang: 'en',
+    //     default: true,
+    //     src: 'assets/silentVoiceEnglish.vtt'
+    //   });
 
+    // const japaneseCaptions = video.addRemoteTextTrack({
+    //     kind: 'captions',
+    //     label: 'Japanese',
+    //     srclang: 'jp',
+    //     default: false,
+    //     src: 'assets/silentVoiceJapanese.vtt'
+    //   });
+    // -------------------------------------------------------------
 
+    // -------------------------------------------------------------
+      
+      // const englishAudio = new videojs.AudioTrack({
+      //   id: 'englishAudio',
+      //   kind: 'audio',
+      //   label: 'English',
+      //   language: 'en',
+      //   // src: 'assets/silentVoiceEnglish.mp3'
+      // });
 
+      // const japaneseAudio = new videojs.AudioTrack({
+      //   id: 'japaneseAudio',
+      //   kind: 'audio',
+      //   label: 'Japanese',
+      //   language: 'jp',
+      //   // src: 'assets/silentVoiceJapanese.mp3'
+      // });
 
-// Obsolete
+      // video.audioTracks().addTrack(englishAudio);
+      // video.audioTracks().addTrack(japaneseAudio);
+
+      // -------------------------------------------------------------
 
 // Play & Pause for video
 // video.addEventListener("click", function() {
@@ -141,6 +263,8 @@
 //   const time = video.duration * (seekBar.value / 100);
 //   video.currentTime = time;
 // });
+
+
 
 // Vue Graveyard
 // const app = Vue.createApp({

@@ -35,6 +35,7 @@
                     <source src="assets/silentVoice.mp4" type="video/mp4" />
                     <track default kind="captions" srclang="en" label="English" src="assets/silentVoiceEnglish.vtt"/>
                     <track kind="captions" srclang="jp" label="Japanese" src="assets/silentVoiceJapanese.vtt"/>
+
                     <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a
                     web browser that
@@ -46,8 +47,8 @@
             </div>
 
             <div>
-                <button class="captions" data-button="0" aria-label="Toggle English Video Captions">English Subtitles</button>
-                <button class="captions" data-button="1" aria-label="Toggle Japanese Video Captions">Japanese Subtitles</button>
+                <button id="englishCaptionButton" class="captions" data-button="0" aria-label="Toggle English Video Captions">English Subtitles</button>
+                <button id="japaneseCaptionButton" class="captions" data-button="1" aria-label="Toggle Japanese Video Captions">Japanese Subtitles</button>
             </div>
 
             <div>
